@@ -1,4 +1,4 @@
-import { isVolatileTitleBundle } from "./capture";
+import { isPlaceholderFrame, isVolatileTitleBundle } from "./capture";
 import type { HelperWindow } from "./helper";
 
 export function windowKeys(window: HelperWindow): string[] {
@@ -31,6 +31,10 @@ function usableWindows(windows: HelperWindow[], exclude?: Set<string>): HelperWi
       return false;
     }
     if (w.subrole === "AXSystemDialog" || w.subrole === "AXDialog" || w.subrole === "AXSheet") {
+      return false;
+    }
+    // WindowServer 500×500 ghosts are listed as positionable; moving them is a no-op.
+    if (isPlaceholderFrame(w.frame)) {
       return false;
     }
     if (exclude && windowKeys(w).some((key) => exclude.has(key))) {

@@ -244,7 +244,10 @@ func enrichSpace(wid: UInt32?, frame: CGRect, displays: [ParsedDisplaySpaces]) -
 func axWindows(for app: NSRunningApplication, displays: [ParsedDisplaySpaces], ranks: [UInt32: Int]) -> [WindowJSON] {
     let pid = app.processIdentifier
     let axApp = AXUIElementCreateApplication(pid)
-    enableEnhancedAX(axApp)
+    // Listing with Enhanced UI on hides Ghostty/Electron AX windows and leaves the
+    // flag stuck on, so later helper runs only see 500×500 WindowServer ghosts.
+    AXUIElementSetAttributeValue(axApp, "AXEnhancedUserInterface" as CFString, kCFBooleanFalse)
+    AXUIElementSetAttributeValue(axApp, "AXManualAccessibility" as CFString, kCFBooleanFalse)
     guard let elements = copyArray(axApp, kAXWindowsAttribute as CFString) else { return [] }
 
     var result: [WindowJSON] = []
@@ -324,6 +327,8 @@ func extraCGWindows(existing: [WindowJSON], bundleId: String?, displays: [Parsed
         let w = (bounds?["Width"] as? NSNumber)?.doubleValue ?? 0
         let h = (bounds?["Height"] as? NSNumber)?.doubleValue ?? 0
         if w < 80 || h < 80 { continue }
+        // Untitled 500×500 frames are WindowServer privacy/ghost placeholders, not real windows.
+        if abs(w - 500) <= 24, abs(h - 500) <= 24 { continue }
         let title = (info[kCGWindowName as String] as? String) ?? ""
         // Untitled CG extras are almost always window-server ghosts when the app already has a real AX window.
         if title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, pidsWithStandard.contains(pid) {

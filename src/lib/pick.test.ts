@@ -78,6 +78,24 @@ describe("pickWindow", () => {
     assert.equal(picked?.window.id, "cursor-laptop");
   });
 
+  it("does not pick a 500×500 WindowServer ghost", () => {
+    const ghost = window({
+      id: "cg:11603",
+      bundleId: "com.mitchellh.ghostty",
+      title: "",
+      subrole: "CGWindow",
+      frame: { x: 0, y: 617, width: 500, height: 500 },
+    });
+    const real = window({
+      id: "76507:0",
+      bundleId: "com.mitchellh.ghostty",
+      title: "~",
+      frame: { x: 478, y: 250, width: 771, height: 549 },
+    });
+    assert.equal(pickWindowForApply([ghost], ""), undefined);
+    assert.equal(pickWindowForApply([ghost, real], "")?.id, "76507:0");
+  });
+
   it("skips apply when a required title does not match", () => {
     const editor = window({
       id: "cursor-editor",

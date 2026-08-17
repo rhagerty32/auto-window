@@ -102,12 +102,25 @@ async function applySlot(
   }
 
   const timeoutMs = running ? 2500 : 10_000;
-  const window = await waitForWindow(slot, timeoutMs, {
+  let window = await waitForWindow(slot, timeoutMs, {
     screenId: options.screenId,
     spaceIndex: slot.fullscreen ? undefined : options.spaceIndex,
     exclude: options.used,
     fullscreen: Boolean(slot.fullscreen),
   });
+  if (!window && slot.bundleId) {
+    try {
+      await launchApp(slot);
+    } catch {
+      // Activation is best-effort; waitForWindow may still pick a window.
+    }
+    window = await waitForWindow(slot, 8_000, {
+      screenId: options.screenId,
+      spaceIndex: slot.fullscreen ? undefined : options.spaceIndex,
+      exclude: options.used,
+      fullscreen: Boolean(slot.fullscreen),
+    });
+  }
   if (!window) {
     const wanted = slot.titleContains.trim();
     return {
