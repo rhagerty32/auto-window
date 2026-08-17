@@ -1,0 +1,224 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "auto-window",
+  "title": "Auto Window",
+  "description": "Save multi-monitor window presets and apply them with a hotkey. Uses display roles (builtin, largest, rightmost) instead of display indexes.",
+  "icon": "icon.png",
+  "author": "ryan",
+  "categories": [
+    "Productivity",
+    "System"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "platforms": [
+    "macOS"
+  ],
+  "commands": [
+    {
+      "name": "apply-preset",
+      "title": "Manage Presets",
+      "subtitle": "Auto Window",
+      "description": "Browse, edit, and apply saved window layouts.",
+      "mode": "view",
+      "keywords": [
+        "layout",
+        "window",
+        "monitor",
+        "preset",
+        "manage",
+        "list"
+      ]
+    },
+    {
+      "name": "capture-layout",
+      "title": "Capture Layout",
+      "subtitle": "Auto Window",
+      "description": "Save the current window arrangement, including Spaces on each display.",
+      "mode": "view",
+      "keywords": [
+        "layout",
+        "window",
+        "capture",
+        "save",
+        "space"
+      ]
+    },
+    {
+      "name": "create-preset",
+      "title": "Create Preset",
+      "subtitle": "Auto Window",
+      "description": "Create a new window layout preset and add the apps it should place.",
+      "mode": "view",
+      "keywords": [
+        "layout",
+        "window",
+        "preset",
+        "new"
+      ]
+    },
+    {
+      "name": "apply-default",
+      "title": "Apply Default Preset",
+      "subtitle": "Auto Window",
+      "description": "Apply the default window layout for the current number of displays.",
+      "mode": "no-view",
+      "keywords": [
+        "layout",
+        "window",
+        "work",
+        "hotkey"
+      ]
+    },
+    {
+      "name": "apply-layout",
+      "title": "Apply Layout",
+      "subtitle": "Auto Window",
+      "description": "Apply a saved layout by name. Assign a hotkey via a Quicklink, or use Apply Layout 1–8.",
+      "mode": "no-view",
+      "keywords": [
+        "layout",
+        "window",
+        "preset",
+        "apply"
+      ],
+      "arguments": [
+        {
+          "name": "name",
+          "placeholder": "Preset name",
+          "type": "text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "apply-layout-1",
+      "title": "Apply Layout 1",
+      "subtitle": "Auto Window",
+      "description": "Apply the preset assigned to layout slot 1. Bind a hotkey in Raycast settings.",
+      "mode": "no-view",
+      "keywords": [
+        "layout",
+        "window",
+        "preset",
+        "hotkey"
+      ]
+    },
+    {
+      "name": "apply-layout-2",
+      "title": "Apply Layout 2",
+      "subtitle": "Auto Window",
+      "description": "Apply the preset assigned to layout slot 2. Bind a hotkey in Raycast settings.",
+      "mode": "no-view",
+      "keywords": [
+        "layout",
+        "window",
+        "preset",
+        "hotkey"
+      ]
+    },
+    {
+      "name": "apply-layout-3",
+      "title": "Apply Layout 3",
+      "subtitle": "Auto Window",
+      "description": "Apply the preset assigned to layout slot 3. Bind a hotkey in Raycast settings.",
+      "mode": "no-view",
+      "keywords": [
+        "layout",
+        "window",
+        "preset",
+        "hotkey"
+      ]
+    },
+    {
+      "name": "apply-layout-4",
+      "title": "Apply Layout 4",
+      "subtitle": "Auto Window",
+      "description": "Apply the preset assigned to layout slot 4. Bind a hotkey in Raycast settings.",
+      "mode": "no-view",
+      "keywords": [
+        "layout",
+        "window",
+        "preset",
+        "hotkey"
+      ]
+    },
+    {
+      "name": "apply-layout-5",
+      "title": "Apply Layout 5",
+      "subtitle": "Auto Window",
+      "description": "Apply the preset assigned to layout slot 5. Bind a hotkey in Raycast settings.",
+      "mode": "no-view",
+      "keywords": [
+        "layout",
+        "window",
+        "preset",
+        "hotkey"
+      ]
+    },
+    {
+      "name": "apply-layout-6",
+      "title": "Apply Layout 6",
+      "subtitle": "Auto Window",
+      "description": "Apply the preset assigned to layout slot 6. Bind a hotkey in Raycast settings.",
+      "mode": "no-view",
+      "keywords": [
+        "layout",
+        "window",
+        "preset",
+        "hotkey"
+      ]
+    },
+    {
+      "name": "apply-layout-7",
+      "title": "Apply Layout 7",
+      "subtitle": "Auto Window",
+      "description": "Apply the preset assigned to layout slot 7. Bind a hotkey in Raycast settings.",
+      "mode": "no-view",
+      "keywords": [
+        "layout",
+        "window",
+        "preset",
+        "hotkey"
+      ]
+    },
+    {
+      "name": "apply-layout-8",
+      "title": "Apply Layout 8",
+      "subtitle": "Auto Window",
+      "description": "Apply the preset assigned to layout slot 8. Bind a hotkey in Raycast settings.",
+      "mode": "no-view",
+      "keywords": [
+        "layout",
+        "window",
+        "preset",
+        "hotkey"
+      ]
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.104.22",
+    "@raycast/utils": "^2.3.0"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^2.2.0",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "eslint": "^9.22.0",
+    "tsx": "^4.19.3",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "build": "npm run build-helper && ray build",
+    "build-helper": "bash scripts/build-helper.sh",
+    "dev": "npm run build-helper && ray develop",
+    "reload": "bash ./restart-raycast.sh",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "prepare": "npm run build-helper",
+    "test": "npx tsx --test src/lib/resolve.test.ts src/lib/capture.test.ts src/lib/spaces.test.ts src/lib/region.test.ts src/lib/zorder.test.ts src/lib/slots.test.ts src/lib/pick.test.ts"
+  }
+}
