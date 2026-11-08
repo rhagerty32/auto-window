@@ -219,6 +219,7 @@
     "fix-lint": "ray lint --fix",
     "lint": "ray lint",
     "prepare": "npm run build-helper",
-    "test": "npx tsx --test src/lib/resolve.test.ts src/lib/capture.test.ts src/lib/spaces.test.ts src/lib/region.test.ts src/lib/zorder.test.ts src/lib/slots.test.ts src/lib/pick.test.ts"
+    "test": "npx tsx --test src/lib/resolve.test.ts src/lib/capture.test.ts src/lib/spaces.test.ts src/lib/region.test.ts src/lib/zorder.test.ts src/lib/slots.test.ts src/lib/pick.test.ts",
+    "publish": "npx @raycast/api@latest publish"
   }
 }
