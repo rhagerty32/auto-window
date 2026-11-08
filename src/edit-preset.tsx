@@ -188,12 +188,7 @@ export function EditSlotView({ presetId, slotId, onSave }: { presetId: string; s
         </ActionPanel>
       }
     >
-      <Form.Dropdown
-        id="bundleId"
-        title="Application"
-        value={selectedBundle || undefined}
-        onChange={setBundleId}
-      >
+      <Form.Dropdown id="bundleId" title="Application" value={selectedBundle || undefined} onChange={setBundleId}>
         {uniqueApplications(apps ?? []).map((app) => (
           <Form.Dropdown.Item
             key={app.bundleId}
