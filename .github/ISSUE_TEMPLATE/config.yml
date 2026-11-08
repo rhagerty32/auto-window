@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Contributing guide
+    url: https://github.com/rhagerty32/auto-window/blob/main/CONTRIBUTING.md
+    about: Build, lint, test, and pull request expectations
+  - name: Code of Conduct
+    url: https://github.com/rhagerty32/auto-window/blob/main/CODE_OF_CONDUCT.md
+    about: Community standards and reporting
